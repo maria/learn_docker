@@ -13,3 +13,7 @@ Docker tutorial for ROSEdu Summer School
 
 - name: Install Docker  
   `$ apt-get install lxc-docker`
+
+- Give access to vagrant user to use docker   
+ `$ gpasswd -a vagrant docker`  
+ `$ service docker restart `
