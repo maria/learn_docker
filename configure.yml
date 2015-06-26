@@ -1,4 +1,5 @@
 - hosts: default
+  sudo: yes
 
   tasks:
     - name: Add Docker repository key
@@ -9,6 +10,11 @@
 
     - name: Install Docker
       apt: pkg=lxc-docker state=present
+
+    - name: Give access to non root user to docker
+      shell: gpasswd -a vagrant docker
+
+    - shell: service docker restart
 
     - name: Install pip
       apt: pkg=python-pip state=present

@@ -12,10 +12,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network :private_network, ip: "192.168.10.99"
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.host_name = "osss.rosedu.local"
 
-  config.vm.synced_folder ".", "/home/vagrant/osss", type: "nfs"
-  config.vm.synced_folder "/Users/maria.nita/maria/SkillHub", "/home/vagrant/osss/SkillHub", type: "nfs"
+  config.vm.synced_folder ".", "/home/vagrant/osss"
+  config.vm.synced_folder "../SkillHub", "/home/vagrant/osss/app"
+
 
   config.vm.provision :ansible do |ansible|
     ansible.inventory_path = "hosts.ini"
