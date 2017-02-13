@@ -1,19 +1,43 @@
 # learn_docker
-Docker tutorial for ROSEdu Summer School
+Docker tutorial
 
+### Install Docker on Mac OS
 
-### Install Docker on Ubuntu
+ - https://download.docker.com/mac/stable/Docker.dmg
 
-- name: Add Docker repository key  
-  `$ wget -qO - https://get.docker.io/gpg | apt-key add - `
+### Terminology
 
-- name: Add Docker repository  
-  `$ sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"`  
-  `$ apt-get update`
+- image (base image)
+- container (container status)
+- network
+- build
+- Dockerfile
 
-- name: Install Docker  
-  `$ apt-get install lxc-docker`
+### Basic docker commands
 
-- Give access to vagrant user to use docker   
- `$ gpasswd -a vagrant docker`  
- `$ service docker restart `
+Show all containers:
+  - `docker ps -a` 
+
+Show running containers:  
+  - `docker ps `
+  
+Show all images:
+  - `docker images`
+
+Stop a docker container:
+  - `docker stop <container-id>`
+  
+Build a docker image from a Dockerfile:
+  - `docker build . -t <image-name>:<image-tag>`
+  
+See container logs:
+  - `docker logs <container-id>`
+  
+See container information:
+  - `docker inspect <container-id>`
+  
+Log in interactively into a running container:
+  - `docker exec -it <container-id> /bin/bash`
+  
+Run a container in detach mode:
+  - `docker run -d <image-name>:<image-tag>`
