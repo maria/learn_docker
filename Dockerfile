@@ -1,14 +1,20 @@
-FROM django:1.8.1-python2
+FROM alpine:3.5
 
 COPY ./app /opt/app
-COPY ./settings_local.py /opt/app/skillhub/settings_local.py
-WORKDIR /opt/app/skillhub
+WORKDIR /opt/app
 
-RUN pip install -r dev-requirements.txt
-RUN python manage.py syncdb --noinput
-RUN python manage.py migrate
+RUN apk update && apk add --no-cache \
+      build-base \
+      bash \
+      python \
+      python-dev \
+      py-pip \
+      libffi \
+      libffi-dev \
+      openssl \
+      openssl-dev \
+      git \
+      openssh \
+    && pip install -r requirements.txt
 
-EXPOSE 8000
-
-CMD python manage.py runserver 0.0.0.0:8000
-#CMD /bin/sh -c "while true; do echo I am alive; sleep 1; done"
+CMD python app.py

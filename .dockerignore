@@ -1,5 +1,3 @@
-*/temp*
- */*/temp*
- temp?
- *.md
- !LICENCSE.md
+*pyc
+*.md
+!LICENSE
